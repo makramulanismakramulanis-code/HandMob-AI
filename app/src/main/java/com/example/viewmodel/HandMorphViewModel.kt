@@ -19,7 +19,8 @@ data class HandMorphUiState(
     val selectedStyle: HandwritingStyle = HandwritingStylesList[2], // Personal Cursive
     val analysisProgress: Float = 0.88f,
     val isAnalyzing: Boolean = false,
-    val feedbackMessage: String? = null
+    val feedbackMessage: String? = null,
+    val capturedImageUri: android.net.Uri? = null
 )
 
 class HandMorphViewModel : ViewModel() {
@@ -75,6 +76,13 @@ class HandMorphViewModel : ViewModel() {
 
     fun dismissFeedback() {
         _uiState.update { it.copy(feedbackMessage = null) }
+    }
+
+    fun setCapturedImage(uri: android.net.Uri?) {
+        _uiState.update { it.copy(capturedImageUri = uri) }
+        if (uri != null) {
+            startAnalysis()
+        }
     }
 
     fun navigateBack(): Boolean {

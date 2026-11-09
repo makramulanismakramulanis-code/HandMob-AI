@@ -187,8 +187,7 @@ fun HandMorphApp(viewModel: HandMorphViewModel = viewModel()) {
                             when (targetScreen) {
                                 AppScreen.HOME -> {
                                     HomeScreen(
-                                        onUploadClick = { viewModel.startAnalysis() },
-                                        onTakePhotoClick = { viewModel.startAnalysis() },
+                                        onImageSelected = { uri -> viewModel.setCapturedImage(uri) },
                                         onProjectClick = { viewModel.navigateToScreen(AppScreen.RESULT_PREVIEW) }
                                     )
                                 }

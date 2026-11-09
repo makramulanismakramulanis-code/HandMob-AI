@@ -241,8 +241,7 @@ fun ContactSheetScreen(
                     onClick = { onScreenSelected(AppScreen.HOME) }
                 ) {
                     HomeScreen(
-                        onUploadClick = { onScreenSelected(AppScreen.ANALYSIS) },
-                        onTakePhotoClick = { onScreenSelected(AppScreen.ANALYSIS) },
+                        onImageSelected = { onScreenSelected(AppScreen.ANALYSIS) },
                         onProjectClick = { onScreenSelected(AppScreen.RESULT_PREVIEW) }
                     )
                 }

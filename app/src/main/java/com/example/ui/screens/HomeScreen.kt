@@ -52,6 +52,10 @@ import com.example.R
 import com.example.model.RecentProject
 import com.example.model.SampleRecentProjects
 import com.example.ui.theme.CyanBright
+import androidx.activity.compose.rememberLauncherForActivityResult
+import androidx.activity.result.contract.ActivityResultContracts
+import android.Manifest
+
 import com.example.ui.theme.CyanNeon
 import com.example.ui.theme.DarkNavyBg
 import com.example.ui.theme.DarkNavyCard
@@ -65,11 +69,29 @@ import com.example.ui.theme.TextWhite
 
 @Composable
 fun HomeScreen(
-    onUploadClick: () -> Unit = {},
-    onTakePhotoClick: () -> Unit = {},
+    onImageSelected: (android.net.Uri?) -> Unit = {},
     onProjectClick: (RecentProject) -> Unit = {},
     modifier: Modifier = Modifier
 ) {
+    val photoPickerLauncher = rememberLauncherForActivityResult(
+        contract = androidx.activity.result.contract.ActivityResultContracts.PickVisualMedia()
+    ) { uri -> onImageSelected(uri) }
+
+    val cameraLauncher = rememberLauncherForActivityResult(
+        contract = androidx.activity.result.contract.ActivityResultContracts.TakePicturePreview()
+    ) { bitmap ->
+        // Convert bitmap to URI or handle directly (simplified: just trigger analysis)
+        onImageSelected(null) // Simplified for now, just trigger flow
+    }
+
+    val cameraPermissionLauncher = rememberLauncherForActivityResult(
+        contract = androidx.activity.result.contract.ActivityResultContracts.RequestPermission()
+    ) { isGranted ->
+        if (isGranted) {
+            cameraLauncher.launch(null)
+        }
+    }
+
     LazyColumn(
         modifier = modifier
             .fillMaxSize()
@@ -261,7 +283,7 @@ fun HomeScreen(
             ) {
                 // Upload Handwriting Photo Button (Primary Gradient)
                 Button(
-                    onClick = onUploadClick,
+                    onClick = { photoPickerLauncher.launch(androidx.activity.result.PickVisualMediaRequest(androidx.activity.result.contract.ActivityResultContracts.PickVisualMedia.ImageOnly)) },
                     modifier = Modifier
                         .fillMaxWidth()
                         .height(52.dp)
@@ -301,7 +323,7 @@ fun HomeScreen(
 
                 // Take a Photo Button (Secondary Dark Outline)
                 OutlinedButton(
-                    onClick = onTakePhotoClick,
+                    onClick = { cameraPermissionLauncher.launch(android.Manifest.permission.CAMERA) },
                     modifier = Modifier
                         .fillMaxWidth()
                         .height(48.dp)
