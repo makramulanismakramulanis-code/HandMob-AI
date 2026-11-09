@@ -1,0 +1,24 @@
+<resources>
+    <string name="app_name">HandMorph AI</string>
+    <string name="tagline">One Handwriting. Multiple Styles.</string>
+    <string name="transform_title">Transform Your Handwriting</string>
+    <string name="upload_photo">Upload Handwriting Photo</string>
+    <string name="take_photo">Take a Photo</string>
+    <string name="recent_projects">Recent Projects</string>
+    <string name="analyzing_title">Analyzing Your Handwriting</string>
+    <string name="status_reading">Reading Text</string>
+    <string name="status_shapes">Analyzing Letter Shapes</string>
+    <string name="status_style">Learning Personal Style</string>
+    <string name="btn_continue">Continue</string>
+    <string name="choose_style_title">Choose Your Handwriting Style</string>
+    <string name="btn_select_style">Select Style</string>
+    <string name="result_title">Your New Handwriting</string>
+    <string name="btn_compare">Compare</string>
+    <string name="btn_regenerate">Regenerate</string>
+    <string name="btn_try_another">Try Another Style</string>
+    <string name="download_title">Your Handwriting Is Ready</string>
+    <string name="btn_download_pdf">Download PDF</string>
+    <string name="btn_download_png">Download PNG</string>
+    <string name="btn_save_styles">Save to My Styles</string>
+    <string name="btn_share">Share</string>
+</resources>

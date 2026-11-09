@@ -1,0 +1,6 @@
+{
+  "name": "HandMorph AI",
+  "description": "Transform personal handwriting into multiple handwriting styles with AI.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
